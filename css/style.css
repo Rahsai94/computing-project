@@ -1,0 +1,674 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400');
+
+
+@import url(https://fonts.googleapis.com/css?family=Raleway:500);
+
+/* Root Style */
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+}
+
+/* Html Style */
+html{
+	scroll-behavior: smooth;
+}
+
+
+/* BODY */
+body {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400;
+	color: #fff;
+	background: #000;
+	overflow: hidden;
+	font-size: 0.85rem;
+}
+
+
+a {
+	text-decoration: none;
+	color: inherit;
+	outline: none;
+}
+
+a:hover,
+a:focus {
+	color: #333;
+}
+
+.hidden {
+	position: absolute;
+	overflow: hidden;
+	width: 0;
+	height: 0;
+	pointer-events: none;
+}
+
+
+
+/* Icons */
+.icon {
+	display: block;
+	width: 1.5em;
+	height: 1.5em;
+	margin: 0 auto;
+	fill: currentColor;
+}
+
+/*******************************************************
+HEADER START
+*******************************************************/
+.codrops-header {
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+	width: 100%;
+	padding: 2vmax;
+	z-index: 1;
+}
+
+
+.codrops-header__title {
+	font-size: 1.5em;
+	margin: 0;
+	padding: 0 1em;
+	color: #fff;
+}
+
+.codrops-header__tagline {
+	margin: 0;
+}
+
+/* Top Navigation Style */
+.codrops-links {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	white-space: nowrap;
+}
+
+.codrops-icon {
+	display: inline-block;
+	margin: 0.25em;
+	padding: 0.25em;
+}
+
+/* Demo links */
+.demos {
+	margin: 0 0 0 3rem;
+}
+
+.demo {
+	margin: 0 1em 0.5em 0;
+	padding: 0 0 0.25em;
+}
+
+.demo:hover,
+.demo--current {
+	color: #fff;
+}
+
+/*******************************************************
+HEADER STOP
+*******************************************************/
+
+
+
+
+/*******************************************************
+MAIN CONTENT START
+*******************************************************/
+.content {
+	padding: 3em 0;
+}
+
+.content.main {
+	min-height: 100vh;
+	padding: 0;
+}
+
+.canvas-wrapper {
+	position: relative;
+	min-height: 100vh;
+	overflow: hidden;
+}
+
+canvas {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	width: 100%;
+	height: 100%;
+}
+
+.p5_loading {
+	background: black;
+	position: fixed;
+	left: 0;
+	top: 0;
+	background: rgb(0, 0, 0);
+	width: 100%;
+	height: 100%;
+	z-index: 9;
+	overflow: hidden;
+}
+
+.p5_loading__inner {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	-webkit-transform: translate3d(-50%, -50%, 0);
+	transform: translate3d(-50%, -50%, 0);
+	display: flex;
+}
+
+.p5_loading__inner span {
+	display: block;
+	width: 100px;
+	height: 100px;
+	border-radius: 100%;
+	background: rgb(255, 255, 255);
+	margin: 0 20px;
+	transform-origin: center;
+	animation: noiseLoad 0.5s infinite ease-in-out alternate;
+}
+
+.p5_loading__inner span:nth-child(2) {
+	animation-delay: 0.33s;
+}
+
+.p5_loading__inner span:nth-child(3) {
+	animation-delay: 0.66s;
+}
+
+@keyframes noiseLoad {
+	from {
+		transform: scale(0);
+		background: rgb(255, 255, 255);
+	}
+
+	to {
+		transform: scale(1);
+		background: rgb(0, 0, 0);
+
+	}
+}
+
+#uploading-animation {
+	display: none;
+}
+
+#uploading-animation.is-visible {
+	display: block;
+	z-index: 150;
+}
+/*******************************************************
+MAIN CONTENT END
+*******************************************************/
+
+
+/*******************************************************
+CONTROLLING BUTTONS START
+*******************************************************/
+.upload-btn::before,
+.toggle-btn {
+	padding: 10px;
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	color: currentColor;
+	position: absolute;
+	bottom: 2vmax;
+	border: 1px solid;
+	width: 255px;
+}
+
+.upload-btn::before {
+	content: 'Upload your track';
+	display: inline-block;
+	left: 2vmax;
+	outline: none;
+	white-space: nowrap;
+	user-select: none;
+	cursor: pointer;
+}
+
+.upload-btn:hover::before {
+	color: #fff;
+}
+
+.toggle-btn {
+	background: transparent;
+	color: currentColor;
+	right: 2vmax;
+}
+
+.toggle-btn:focus {
+	outline: none;
+}
+
+.toggle-btn:hover {
+	color: #fff;
+}
+
+.searchButton {
+	margin-left: 1rem;
+	cursor: pointer;
+}
+
+.musicVol {
+	/* position: absolute; */
+	/* bottom: 2vmax; */
+	padding: 10px;
+	color: currentColor;
+	position: absolute;
+	width: 300px;
+	bottom: 2vmax;
+	left: 37%;
+	height: 20px;
+	/* background-color: #2ecc71; */
+	background: transparent;
+	display: block;
+}
+
+/*******************************************************
+CONTROLLING BUTTONS END
+*******************************************************/
+
+
+
+/*******************************************************
+SERACH OVERLAY POPUP BODY
+*******************************************************/
+
+.overlay {
+
+	height: 100%;
+	width: 100%;
+	display: none;
+	position: fixed;
+	z-index: 100;
+	background-color: rgba(0, 0, 0, 0.678);
+
+}
+
+.overlay-content {
+	position: relative;
+	top: 10%;
+	width: 50%;
+	text-align: center;
+	margin-top: 30px;
+	margin: auto;
+}
+
+
+.overlay .closebtn {
+	position: absolute;
+	top: 20px;
+	right: 45px;
+	font-size: 60px;
+	cursor: pointer;
+	color: white;
+}
+
+.overlay .closebtn:hover {
+	color: #ccc;
+}
+
+.overlay input[type=text] {
+	padding: 15px;
+	font-size: 17px;
+	border: none;
+	float: left;
+	width: 80%;
+	background: white;
+}
+
+.overlay input[type=text]:hover {
+	background: #f1f1f1;
+}
+
+.overlay button {
+	float: left;
+	width: 20%;
+	padding: 15px;
+	background: #ddd;
+	font-size: 17px;
+	border: none;
+	cursor: pointer;
+}
+
+.overlay button:hover {
+	background: #bbb;
+}
+
+#myOverlay #songsList {
+	position: relative;
+	top: 14%;
+	width: 90%;
+	text-align: center;
+	right: 0;
+	left: 7%;
+}
+
+#myOverlay #songsList h5 {
+	font-size: 1rem;
+}
+/*******************************************************
+SERACH OVERLAY POPUP BODY END
+*******************************************************/
+
+
+
+
+/*******************************************************
+SERACH SONGS CONTENT START
+*******************************************************/
+.search-title{
+	width: 50%;
+}
+
+/* Float four columns side by side */
+.column {
+	float: left;
+	width: 20%;
+	padding: 0 10px;
+  }
+  
+  /* Remove extra left and right margins, due to padding */
+  .row {margin: 0 -5px;}
+  
+  /* Clear floats after the columns */
+  .row:after {
+	content: "";
+	display: table;
+	clear: both;
+  }
+  
+  /* Responsive columns */
+  @media screen and (max-width: 600px) {
+	.column {
+	  width: 100%;
+	  display: block;
+	  margin-bottom: 20px;
+	}
+  }
+  
+  /* Style the counter cards */
+  .card {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	padding: 16px;
+	text-align: center;
+	/* background-color: #f1f1f1; */
+  }
+
+
+/* .songs-list{
+	position: relative;
+	top: 10%;
+	width: 50%;
+	text-align: center;
+	margin-top: 30px;
+	margin: auto;
+} */
+
+.result-songs {
+	/* background: var(--colour-body-background);
+	font-family: Bitter;
+	padding: calc(var(--base-grid)*10); */
+
+	width: 70%;
+	left: 15%;
+	right: 15%;
+}
+
+.result-songs ul {
+	display: flex;
+	list-style-type: none;
+}
+
+.result-songs ul li{
+	margin: 5px;
+}
+
+
+@keyframes wave {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+
+
+.music-card {
+	background: #fff;
+	box-shadow: 9px 7px 37px -6px rgba(0, 0, 0, 0.75);
+	overflow: hidden;
+	position: relative;
+	width: 185px;
+	height: 270px;
+}
+
+.image {
+	background: url('../assets/c1.jpg') no-repeat 75%;
+	background-size: cover;
+	position: absolute;
+	z-index: 1;
+	/* opacity: 1; */
+	height: 185px;
+	width: 185px;
+}
+
+.image:after {
+	height: 100px;
+	content: '';
+	top: 200px;
+	position: absolute;
+	width: 100%;
+	z-index: 1;
+	background: linear-gradient(rgba(9, 2, 4, 0), #444);
+}
+
+.image:hover{
+	background: #000;
+}
+
+.info {
+	position: absolute;
+	bottom: 20px;
+	left: 0;
+	right: 0;
+	text-align: center;
+}
+
+.title {
+	font-size: 1.4em;
+	font-weight: 400;
+	color: #333;
+	margin-bottom: 8px;
+	text-transform: uppercase;
+	font-family: 'Reem Kufi', sans-serif;
+}
+
+.artist {
+	color: #cfcfcf;
+	font-size: 1.2em;
+	letter-spacing: 0.08em;
+	font-family: 'Reem Kufi', sans-serif;
+}
+
+ .music-card .fa {
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	font-size: 18px;
+	cursor: pointer;
+	color: rgb(0, 0, 0);
+	z-index: 10000;
+}
+
+.music-card .fa:hover {
+	color: inherit;
+}
+
+.music-card a{
+	cursor: pointer;
+}
+
+.playButton{
+	background: transparent;
+    z-index: 2000000;
+    position: absolute;
+	display: block;
+}
+.pauseButton{
+	background: transparent;
+    z-index: 2000000;
+    position: absolute;
+	display: none;
+}
+
+/*******************************************************
+SERACH SONGS CONTENT END
+*******************************************************/
+
+
+
+
+
+@media screen and (max-width: 55em) {
+	.codrops-header {
+		flex-direction: column;
+		justify-content: center;
+		text-align: center;
+	}
+
+	.demos {
+		width: 100%;
+		margin: 1em 0 0;
+		text-align: center;
+	}
+
+	.toggle-btn {
+		right: 10px;
+		bottom: 5.5em;
+		width: calc(100% - 20px);
+	}
+
+	.upload-btn::before {
+		position: absolute;
+		bottom: 9em;
+		left: 10px;
+		width: calc(100% - 20px);
+	}
+
+	.musicVol {
+		left: 20%;
+		width: 60%;
+	}
+
+	.searchButton {
+		margin-left: 0;
+		cursor: pointer;
+	}
+
+	.overlay {
+		height: 100%;
+		width: 100%;
+		top: 0;
+		left: 0;
+		background-color: rgba(0, 0, 0, 0.616);
+	}
+	.overlay-content {
+		width: 100%;
+		padding: 10px;
+	}
+	.overlay input[type=text]{
+		color: #333;
+	}
+}
+
+@media screen and (max-width: 400px){
+	
+	.searchButton {
+		margin-left: 0;
+		cursor: pointer;
+	}
+
+	.overlay {
+		height: 100%;
+		width: 100%;
+		top: 0;
+		left: 0;
+		background-color: rgba(0, 0, 0, 0.616);
+	}
+
+	.overlay-content {
+		width: 100%;
+		padding: 10px;
+	}
+
+	.overlay input[type=text] {
+		color: #333;
+	}
+
+	.search-title {
+		width: 100%;
+	}
+	
+}
+
+@media screen and (max-width: 430px) {
+	.demos {
+		width: 100%;
+		margin: 1em 0 0;
+		text-align: center;
+		display: inline-grid;
+	}
+
+	.musicVol {
+		left: 20%;
+		width: 60%;
+	}
+
+	
+
+}
+
+@media(min-width: 880px) {
+
+	.musicVol {
+		left: 40%;
+		width: 20%;
+	}
+	.overlay-content {
+		width: 50%;
+		padding: 10px;
+	}
+	.overlay input[type=text]{
+		color: #333;
+	}
+
+}
+
+
+
+
+
+
+
+
+
